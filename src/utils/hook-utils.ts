@@ -24,7 +24,8 @@ function useWindowSize() {
 
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
-  }, []); // Empty array ensures that effect is only run on mount and unmount
+    //eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []); // We want to make sure it only run on component did mount
 
   return windowSize;
 }

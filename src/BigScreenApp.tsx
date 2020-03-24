@@ -31,7 +31,11 @@ const Header = () => {
 const Body = () => {
   const { theme } = useActiveTheme();
   return (
-    <Box flex={6} separators={[Separators.bottom]}>
+    <Box
+      flex={6}
+      backgroundColor={theme.container}
+      separators={[Separators.bottom]}
+    >
       <Box flex={1} style={{ flexDirection: "column" }}>
         <Box
           flex={1}
@@ -45,7 +49,7 @@ const Body = () => {
         </Box>
       </Box>
       <Box
-        flex={4}
+        flex={3}
         backgroundColor={theme.boxD}
         separators={[Separators.left, Separators.right]}
       >

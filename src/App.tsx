@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import { ThemeProvider } from "styled-components";
+import { layoutGenerator } from "react-break";
 
-// import BigScreenApp from "./BigScreenApp";
 import SmallScreenApp from "./SmallScreenApp";
+import BigScreenApp from "./BigScreenApp";
 import {
   theme,
   ThemeOptions,
@@ -10,18 +11,34 @@ import {
   DEFAULT_ACTIVE_THEME
 } from "./design/theme";
 
+/**
+ * Breakpoints based on https://uxplanet.org/responsive-design-best-practices-c6d3f5fd163b
+ */
+const layout = layoutGenerator({
+  small: 0,
+  big: 600
+});
+
 function App() {
   const [activeTheme, setActiveTheme] = useState(DEFAULT_ACTIVE_THEME);
   const appTheme =
     activeTheme === ThemeOptions.light ? theme.light : theme.dark;
+
+  const OnSmallScreen = layout.is("small");
+  const OnBigScreen = layout.isAtLeast("big");
 
   return (
     <ThemeContext.Provider
       value={{ activeTheme, setActiveTheme, theme: appTheme }}
     >
       <ThemeProvider theme={appTheme}>
-        {/* <BigScreenApp /> */}
-        <SmallScreenApp />
+        <OnSmallScreen>
+          <SmallScreenApp />
+        </OnSmallScreen>
+
+        <OnBigScreen>
+          <BigScreenApp />
+        </OnBigScreen>
       </ThemeProvider>
     </ThemeContext.Provider>
   );
