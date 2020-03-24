@@ -1,4 +1,5 @@
-import { useState, useEffect } from "react";
+import { useContext, useState, useEffect } from "react";
+import { ActiveThemeObject, ThemeContext } from "../design/theme";
 
 function useWindowSize() {
   const isClient = typeof window === "object";
@@ -28,4 +29,8 @@ function useWindowSize() {
   return windowSize;
 }
 
-export { useWindowSize };
+const useActiveTheme = (): ActiveThemeObject => {
+  return useContext(ThemeContext);
+};
+
+export { useWindowSize, useActiveTheme };
