@@ -5,8 +5,13 @@ import { useActiveTheme } from "./utils/hook-utils";
 import { ThemeOptions } from "./design/theme";
 
 const BigScreenApp = () => {
+  const { theme } = useActiveTheme();
   return (
-    <Box flex={1} backgroundColor="white" style={{ flexDirection: "column" }}>
+    <Box
+      flex={1}
+      backgroundColor={theme.container}
+      style={{ flexDirection: "column" }}
+    >
       <Header />
       <Body />
       <Footer />
@@ -24,17 +29,39 @@ const Header = () => {
 };
 
 const Body = () => {
+  const { theme } = useActiveTheme();
   return (
-    <Box flex={6} backgroundColor="red" separators={[Separators.bottom]}>
-      <span>B</span>
+    <Box flex={6} separators={[Separators.bottom]}>
+      <Box flex={1} style={{ flexDirection: "column" }}>
+        <Box
+          flex={1}
+          backgroundColor={theme.boxB}
+          separators={[Separators.bottom]}
+        >
+          <span>B</span>
+        </Box>
+        <Box flex={1} backgroundColor={theme.boxC}>
+          <span>C</span>
+        </Box>
+      </Box>
+      <Box
+        flex={4}
+        backgroundColor={theme.boxD}
+        separators={[Separators.left, Separators.right]}
+      >
+        <span>D</span>
+      </Box>
+      <Box flex={1} backgroundColor={theme.boxE}>
+        <span>E</span>
+      </Box>
     </Box>
   );
 };
 
 const Footer = () => {
-  const { activeTheme, setActiveTheme } = useActiveTheme();
+  const { activeTheme, setActiveTheme, theme } = useActiveTheme();
   return (
-    <Box flex={2} backgroundColor="green">
+    <Box flex={2} backgroundColor={theme.boxF}>
       <span>F</span>
       <button
         onClick={() => {

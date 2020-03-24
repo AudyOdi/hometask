@@ -1,14 +1,19 @@
 import React from "react";
-// import styled from "styled-components";
 
 import { View } from "./ui/primitives";
 import Box, { Separators } from "./ui/components/Box";
-import { useWindowSize } from "./utils/hook-utils";
+import { useWindowSize, useActiveTheme } from "./utils/hook-utils";
+import { ThemeOptions } from "./design/theme";
 
 const SmallScreenApp = () => {
+  const { theme } = useActiveTheme();
   return (
     <View
-      style={{ flex: 1, flexDirection: "column", backgroundColor: "white" }}
+      style={{
+        flex: 1,
+        flexDirection: "column",
+        backgroundColor: theme.container
+      }}
     >
       <div style={{ overflow: "scroll" }}>
         <Header />
@@ -22,40 +27,44 @@ const SmallScreenApp = () => {
 
 const Header = () => {
   const size = useWindowSize();
+  const { theme } = useActiveTheme();
 
   return (
     <Box
       height={size.height * 0.1}
-      backgroundColor="blue"
+      backgroundColor={theme.boxA}
       separators={[Separators.bottom]}
     >
-      <span>header</span>
+      <span>A</span>
     </Box>
   );
 };
 
 const FirstPageBody = () => {
   const size = useWindowSize();
+  const { theme } = useActiveTheme();
 
   return (
-    <Box
-      height={size.height * 0.9}
-      backgroundColor="white"
-      separators={[Separators.bottom]}
-    >
+    <Box height={size.height * 0.9} separators={[Separators.bottom]}>
       <Box flex={1} style={{ flexDirection: "column" }}>
         <Box
           flex={2}
-          backgroundColor="green"
+          backgroundColor={theme.boxD}
           separators={[Separators.bottom]}
-        ></Box>
-        <Box flex={1} backgroundColor="white">
+        >
+          <span>D</span>
+        </Box>
+        <Box flex={1}>
           <Box
             flex={1}
-            backgroundColor="red"
+            backgroundColor={theme.boxB}
             separators={[Separators.right]}
-          ></Box>
-          <Box flex={1} backgroundColor="pink"></Box>
+          >
+            <span>B</span>
+          </Box>
+          <Box flex={1} backgroundColor={theme.boxC}>
+            <span>C</span>
+          </Box>
         </Box>
       </Box>
     </Box>
@@ -63,29 +72,36 @@ const FirstPageBody = () => {
 };
 const SecondPageBody = () => {
   const size = useWindowSize();
+  const { theme } = useActiveTheme();
 
   return (
     <Box
       height={size.height * 0.7}
-      backgroundColor="cyan"
+      backgroundColor={theme.boxE}
       separators={[Separators.bottom]}
-    ></Box>
+    >
+      <span>E</span>
+    </Box>
   );
 };
 
 const Footer = () => {
   const size = useWindowSize();
+  const { theme, activeTheme, setActiveTheme } = useActiveTheme();
 
   return (
-    <div
-      style={{
-        display: "flex",
-        backgroundColor: "green",
-        height: size.height * 0.3
-      }}
-    >
-      <span>Footer</span>
-    </div>
+    <Box height={size.height * 0.3} backgroundColor={theme.boxF}>
+      <span>F</span>
+      <button
+        onClick={() => {
+          if (activeTheme === ThemeOptions.light) {
+            setActiveTheme(ThemeOptions.dark);
+          } else {
+            setActiveTheme(ThemeOptions.light);
+          }
+        }}
+      />
+    </Box>
   );
 };
 
