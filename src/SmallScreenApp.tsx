@@ -1,69 +1,60 @@
 import React from "react";
+import styled from "styled-components";
 
-import { View } from "./ui/primitives";
 import Box, { Separators } from "./ui/components/Box";
-import { useWindowSize, useActiveTheme } from "./utils/hook-utils";
-import { ThemeOptions } from "./design/theme";
+import { useWindowSize } from "./utils/hook-utils";
+import { ThemeObject } from "./design/theme";
+import AScreen from "./screens/AScreen";
+import BScreen from "./screens/BScreen";
+import CScreen from "./screens/CScreen";
+import DScreen from "./screens/DScreen";
+import EScreen from "./screens/EScreen";
+import FScreen from "./screens/FScreen";
 
 const SmallScreenApp = () => {
-  const { theme } = useActiveTheme();
   return (
-    <View
-      style={{
-        flex: 1,
-        flexDirection: "column",
-        backgroundColor: theme.container
-      }}
-    >
+    <Container>
       <div style={{ overflow: "scroll" }}>
         <Header />
         <FirstPageBody />
         <SecondPageBody />
         <Footer />
       </div>
-    </View>
+    </Container>
   );
 };
 
+const Container = styled(Box)<{ theme: ThemeObject }>`
+  flex: 1;
+  flex-direction: column;
+  background-color: ${props => props.theme.container};
+`;
+
 const Header = () => {
   const size = useWindowSize();
-  const { theme } = useActiveTheme();
 
   return (
-    <Box
-      height={size.height * 0.1}
-      backgroundColor={theme.boxA}
-      separators={[Separators.bottom]}
-    >
-      <span>A</span>
+    <Box height={size.height * 0.1} separators={[Separators.bottom]}>
+      <AScreen />
     </Box>
   );
 };
 
 const FirstPageBody = () => {
   const size = useWindowSize();
-  const { theme } = useActiveTheme();
 
   return (
     <Box height={size.height * 0.9} separators={[Separators.bottom]}>
       <Box flex={1} style={{ flexDirection: "column" }}>
-        <Box
-          flex={2}
-          backgroundColor={theme.boxD}
-          separators={[Separators.bottom]}
-        >
-          <span>D</span>
+        <Box flex={2} separators={[Separators.bottom]}>
+          <DScreen />
         </Box>
         <Box flex={1}>
-          <Box
-            flex={1}
-            backgroundColor={theme.boxB}
-            separators={[Separators.right]}
-          >
-            <span>B</span>
+          <Box flex={1} separators={[Separators.right]}>
+            <BScreen />
           </Box>
-          <Box flex={1} backgroundColor={theme.boxC}>
-            <span>C</span>
+          <Box flex={1}>
+            <CScreen />
           </Box>
         </Box>
       </Box>
@@ -72,35 +63,20 @@ const FirstPageBody = () => {
 };
 const SecondPageBody = () => {
   const size = useWindowSize();
-  const { theme } = useActiveTheme();
 
   return (
-    <Box
-      height={size.height * 0.7}
-      backgroundColor={theme.boxE}
-      separators={[Separators.bottom]}
-    >
-      <span>E</span>
+    <Box height={size.height * 0.7} separators={[Separators.bottom]}>
+      <EScreen />
     </Box>
   );
 };
 
 const Footer = () => {
   const size = useWindowSize();
-  const { theme, activeTheme, setActiveTheme } = useActiveTheme();
 
   return (
-    <Box height={size.height * 0.3} backgroundColor={theme.boxF}>
-      <span>F</span>
-      <button
-        onClick={() => {
-          if (activeTheme === ThemeOptions.light) {
-            setActiveTheme(ThemeOptions.dark);
-          } else {
-            setActiveTheme(ThemeOptions.light);
-          }
-        }}
-      />
+    <Box height={size.height * 0.3}>
+      <FScreen />
     </Box>
   );
 };
