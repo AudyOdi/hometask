@@ -1,36 +1,40 @@
 import React from "react";
-import styled from "styled-components";
+// import styled from "styled-components";
 
-import { View } from "./ui/primitives";
+import Box, { Separators } from "./ui/components/Box";
 
 const BigScreenApp = () => {
   return (
-    <View style={{ flex: 1, flexDirection: "column", backgroundColor: "red" }}>
+    <Box flex={1} backgroundColor="white" style={{ flexDirection: "column" }}>
       <Header />
-      <Body>
-        <View style={{ flex: 1, backgroundColor: "yellow" }}>
-          <span>body</span>
-        </View>
-      </Body>
-      <Footer>
-        <View style={{ flex: 1, backgroundColor: "green" }}>
-          <span>Footer</span>
-        </View>
-      </Footer>
-    </View>
+      <Body />
+      <Footer />
+    </Box>
   );
 };
 
-const Header = styled(View)`
-  width: 100%;
-  height: 30px;
-  background-color: blue;
-`;
-const Body = styled(View)`
-  flex: 2.5;
-`;
-const Footer = styled(View)`
-  flex: 1;
-`;
+const Header = () => {
+  return (
+    <Box flex={1} backgroundColor="blue" separators={[Separators.bottom]}>
+      <span>A</span>
+    </Box>
+  );
+};
+
+const Body = () => {
+  return (
+    <Box flex={6} backgroundColor="red" separators={[Separators.bottom]}>
+      <span>B</span>
+    </Box>
+  );
+};
+
+const Footer = () => {
+  return (
+    <Box flex={2} backgroundColor="green">
+      <span>F</span>
+    </Box>
+  );
+};
 
 export default BigScreenApp;
