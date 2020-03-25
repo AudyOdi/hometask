@@ -1,6 +1,9 @@
 import { useContext, useState, useEffect } from "react";
 import { ActiveThemeObject, ThemeContext } from "../design/theme";
 
+/**
+ * custom hook to get window (screen) size.
+ */
 function useWindowSize() {
   const isClient = typeof window === "object";
 
@@ -30,8 +33,15 @@ function useWindowSize() {
   return windowSize;
 }
 
+/**
+ * custom hook to get active theme object that stored in context
+ */
 const useActiveTheme = (): ActiveThemeObject => {
   return useContext(ThemeContext);
 };
+
+/* =============================================================================
+Export
+============================================================================= */
 
 export { useWindowSize, useActiveTheme };
