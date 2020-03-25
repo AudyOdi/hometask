@@ -25,23 +25,23 @@ export interface ThemeObject {
 
 const theme = {
   light: {
-    container: "white",
-    boxA: "red",
-    boxB: "green",
-    boxC: "blue",
-    boxD: "yellow",
-    boxE: "cyan",
-    boxF: "purple",
+    container: "#FFFFFF",
+    boxA: "#545834",
+    boxB: "#798F51",
+    boxC: "#8F8879",
+    boxD: "#F5E0B4",
+    boxE: "#ECD386",
+    boxF: "#CCC685",
     primaryButtonGradient: ["orange", "yellow"]
   },
   dark: {
-    container: "black",
-    boxA: "purple",
-    boxB: "cyan",
-    boxC: "yellow",
-    boxD: "blue",
-    boxE: "green",
-    boxF: "red",
+    container: "#121212",
+    boxA: "#3e432e",
+    boxB: "#0d7377",
+    boxC: "#eeeeee",
+    boxD: "#b0a565",
+    boxE: "#ff6464",
+    boxF: "#2f3032",
     primaryButtonGradient: ["orange", "yellow"]
   }
 };

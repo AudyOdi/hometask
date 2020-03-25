@@ -37,7 +37,7 @@ const ButtonBase = styled.button<{ theme: ThemeObject }>`
   padding-right: ${spacing["4x"]}px;
   padding-top: ${spacing["1x"]}px;
   padding-bottom: ${spacing["1x"]}px;
-  border-radius: ${spacing["2x"]}px
+  border-radius: ${spacing["2x"]}px;
   align-items: center;
   justify-content: center;
   background: linear-gradient(
