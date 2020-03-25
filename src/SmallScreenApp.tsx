@@ -14,7 +14,20 @@ import FScreen from "./screens/FScreen";
 const SmallScreenApp = () => {
   return (
     <Container>
-      <div style={{ overflow: "scroll" }}>
+      <div
+        style={{
+          flexGrow: 1,
+          flexShrink: 1,
+          // Enable hardware compositing in modern browsers.
+          // Creates a new layer with its own backing surface that can significantly
+          // improve scroll performance.
+          transform: "translateZ(0px)",
+          // iOS native scrolling
+          WebkitOverflowScrolling: "touch",
+          overflowX: "hidden",
+          overflowY: "auto"
+        }}
+      >
         <Header />
         <FirstPageBody />
         <SecondPageBody />

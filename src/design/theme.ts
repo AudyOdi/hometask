@@ -14,6 +14,7 @@ export interface ThemeObject {
   boxD: string;
   boxE: string;
   boxF: string;
+  primaryButtonGradient: Array<string>;
 }
 
 const theme = {
@@ -24,7 +25,8 @@ const theme = {
     boxC: "blue",
     boxD: "yellow",
     boxE: "cyan",
-    boxF: "purple"
+    boxF: "purple",
+    primaryButtonGradient: ["orange", "yellow"]
   },
   dark: {
     container: "black",
@@ -33,7 +35,8 @@ const theme = {
     boxC: "yellow",
     boxD: "blue",
     boxE: "green",
-    boxF: "red"
+    boxF: "red",
+    primaryButtonGradient: ["orange", "yellow"]
   }
 };
 

@@ -4,13 +4,17 @@ import styled from "styled-components";
 import Box from "../ui/components/Box";
 import { ThemeObject, ThemeOptions } from "../design/theme";
 import { useActiveTheme } from "../utils/hook-utils";
+import { Button } from "../ui/primitives";
 
 const FScreen = () => {
   const { activeTheme, setActiveTheme } = useActiveTheme();
   return (
     <Container>
       <span>F</span>
-      <button
+      <Button
+        text={`Set theme to ${
+          activeTheme === ThemeOptions.light ? "dark" : "light"
+        }`}
         onClick={() => {
           if (activeTheme === ThemeOptions.light) {
             setActiveTheme(ThemeOptions.dark);
@@ -18,9 +22,7 @@ const FScreen = () => {
             setActiveTheme(ThemeOptions.light);
           }
         }}
-      >
-        Set theme to {activeTheme === ThemeOptions.light ? "dark" : "light"}
-      </button>
+      />
     </Container>
   );
 };
