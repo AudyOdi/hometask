@@ -3,18 +3,22 @@ import styled from "styled-components";
 /* =============================================================================
 Component
 --------------------------------------------------------------------------------
-View is a div component that has flex as default display.
+ScrollView is a wrapper that makes the components inside (or a screen) scrollable.
 
-This is to match with how React Native works and makes style development easier
-because we only care about flex display for most of the case.
+This is to match the ScrollView component in React Native.
 ============================================================================= */
 
-const View = styled.div`
-  display: flex;
+const ScrollView = styled.div`
+  flex-grow: 1;
+  flex-shrink: 1;
+  transform: translateZ(0px);
+  -webkit-overflow-scrolling: touch,
+  overflow-x: hidden;
+  overflow-y: auto;
 `;
 
 /* =============================================================================
 Export
 ============================================================================= */
 
-export default View;
+export default ScrollView;

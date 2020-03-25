@@ -1,11 +1,17 @@
 import { createContext } from "react";
 
+/**
+ * Theme object that will be stored in context.
+ */
 export interface ActiveThemeObject {
   activeTheme: ThemeOptions;
   setActiveTheme: (newTheme: ThemeOptions) => void;
   theme: ThemeObject;
 }
 
+/**
+ * Theme palette
+ */
 export interface ThemeObject {
   container: string;
   boxA: string;
@@ -40,6 +46,9 @@ const theme = {
   }
 };
 
+/**
+ * Available theme options that user can switch around
+ */
 enum ThemeOptions {
   light,
   dark

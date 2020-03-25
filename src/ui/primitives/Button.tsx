@@ -1,7 +1,8 @@
 import React from "react";
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 
 import { ThemeObject } from "../../design/theme";
+import { spacing } from "../../design/spacing";
 
 /* =============================================================================
 Types and Config
@@ -12,38 +13,33 @@ interface IProps {
   onClick: () => void;
 }
 
+/* =============================================================================
+Component
+--------------------------------------------------------------------------------
+Default button across the app. Currently there is only one: primary style.
+============================================================================= */
+
 const Button = (props: IProps): JSX.Element => {
   const { text, onClick } = props;
 
-  return (
-    <ButtonBase
-      onClick={event => {
-        event.preventDefault();
-        onClick();
-      }}
-    >
-      {text}
-    </ButtonBase>
-  );
+  return <ButtonBase onClick={onClick}>{text}</ButtonBase>;
 };
 
 /* =============================================================================
-Styled Components and Helpers
+Styled Components
 ============================================================================= */
-
-const BUTTON_CSS = css`
-  width: 100%;
-  height: 46;
-  align-items: center;
-  justify-content: center;
-  border-radius: 3;
-`;
 
 /**
  * Base button renders the main gradient background.
  */
-const ButtonBase = styled.div<{ theme: ThemeObject }>`
-  ${BUTTON_CSS};
+const ButtonBase = styled.button<{ theme: ThemeObject }>`
+  padding-left: ${spacing["4x"]}px;
+  padding-right: ${spacing["4x"]}px;
+  padding-top: ${spacing["1x"]}px;
+  padding-bottom: ${spacing["1x"]}px;
+  border-radius: ${spacing["2x"]}px
+  align-items: center;
+  justify-content: center;
   background: linear-gradient(
     90deg,
     ${props => props.theme.primaryButtonGradient.join(", ")}

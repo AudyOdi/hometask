@@ -19,13 +19,13 @@ const layout = layoutGenerator({
   big: 600
 });
 
+const OnSmallScreen = layout.is("small");
+const OnBigScreen = layout.isAtLeast("big");
+
 function App() {
   const [activeTheme, setActiveTheme] = useState(DEFAULT_ACTIVE_THEME);
   const appTheme =
     activeTheme === ThemeOptions.light ? theme.light : theme.dark;
-
-  const OnSmallScreen = layout.is("small");
-  const OnBigScreen = layout.isAtLeast("big");
 
   return (
     <ThemeContext.Provider

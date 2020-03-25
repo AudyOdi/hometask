@@ -10,6 +10,15 @@ import DScreen from "./screens/DScreen";
 import EScreen from "./screens/EScreen";
 import FScreen from "./screens/FScreen";
 
+/* =============================================================================
+Component
+--------------------------------------------------------------------------------
+BigScreenApp is a component that holds the structure of the app on big screen.
+It consists of 3 main sections: Header, Body, and Footer.
+
+On big screen, the app doesnt need to be scrollable.
+============================================================================= */
+
 const BigScreenApp = () => {
   return (
     <Container>
@@ -20,6 +29,14 @@ const BigScreenApp = () => {
   );
 };
 
+/* =============================================================================
+Styled Components and Helpers
+============================================================================= */
+
+/**
+ * Header component that will be rendered on the top of the screen.
+ */
+
 const Header = () => {
   return (
     <Box flex={1} separators={[Separators.bottom]}>
@@ -27,6 +44,11 @@ const Header = () => {
     </Box>
   );
 };
+
+/**
+ * Body component that will be rendered on the center of the screen and holds
+ * several other components as the content of the screen.
+ */
 
 const Body = () => {
   return (
@@ -49,6 +71,10 @@ const Body = () => {
   );
 };
 
+/**
+ * Footer component that will be rendered on the bottom of the screen.
+ */
+
 const Footer = () => {
   return (
     <Box flex={1.5}>
@@ -57,10 +83,18 @@ const Footer = () => {
   );
 };
 
+/**
+ * Container is a component that wraps all the components on this screen.
+ */
+
 const Container = styled(Box)<{ theme: ThemeObject }>`
   flex: 1;
   flex-direction: column;
   background-color: ${props => props.theme.container};
 `;
+
+/* =============================================================================
+Export
+============================================================================= */
 
 export default BigScreenApp;

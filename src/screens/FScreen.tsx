@@ -6,6 +6,12 @@ import { ThemeObject, ThemeOptions } from "../design/theme";
 import { useActiveTheme } from "../utils/hook-utils";
 import { Button } from "../ui/primitives";
 
+/* =============================================================================
+Component
+
+Consist of button that can change theme to dark or light
+============================================================================= */
+
 const FScreen = () => {
   const { activeTheme, setActiveTheme } = useActiveTheme();
   return (
@@ -27,10 +33,24 @@ const FScreen = () => {
   );
 };
 
+/* =============================================================================
+Styled Components
+============================================================================= */
+
+/**
+ * Container is a component that wraps all the components on this screen.
+ */
+
 const Container = styled(Box)<{ theme: ThemeObject }>`
   flex: 1;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   background-color: ${props => props.theme.boxF};
 `;
+
+/* =============================================================================
+Export
+============================================================================= */
+
 export default FScreen;

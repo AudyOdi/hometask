@@ -10,38 +10,58 @@ import CScreen from "./screens/CScreen";
 import DScreen from "./screens/DScreen";
 import EScreen from "./screens/EScreen";
 import FScreen from "./screens/FScreen";
+import { ScrollView } from "./ui/primitives";
+
+/* =============================================================================
+Component
+--------------------------------------------------------------------------------
+SmallScreenApp is a component that holds the structure of the app on small screen.
+Similar with BigScreenApp component, it consists of 3 main sections: Header,
+Body, and Footer.
+
+The difference with big screen is that small screen app needs to be scrollable
+and the structure of the body is different compare to big screen. The way I
+divided the screen is:
+Header: A.
+Page 1: D, B, C.
+Page 2: E, F.
+(For more info about A, B, C, D, E, and F, please refer to readme)
+
+Every page will be rendered to match the screen height.
+============================================================================= */
 
 const SmallScreenApp = () => {
   return (
     <Container>
-      <div
-        style={{
-          flexGrow: 1,
-          flexShrink: 1,
-          // Enable hardware compositing in modern browsers.
-          // Creates a new layer with its own backing surface that can significantly
-          // improve scroll performance.
-          transform: "translateZ(0px)",
-          // iOS native scrolling
-          WebkitOverflowScrolling: "touch",
-          overflowX: "hidden",
-          overflowY: "auto"
-        }}
-      >
+      <ScrollView>
         <Header />
         <FirstPageBody />
         <SecondPageBody />
         <Footer />
-      </div>
+      </ScrollView>
     </Container>
   );
 };
+
+/* =============================================================================
+Styled Components and Helpers
+============================================================================= */
+
+/**
+ * Container is a component that wraps all the components on this screen.
+ */
 
 const Container = styled(Box)<{ theme: ThemeObject }>`
   flex: 1;
   flex-direction: column;
   background-color: ${props => props.theme.container};
 `;
+
+/**
+ * Header component that will be rendered on the top of the screen.
+ *
+ * Header component will take 10% of the height of the device's screen.
+ */
 
 const Header = () => {
   const size = useWindowSize();
@@ -52,6 +72,13 @@ const Header = () => {
     </Box>
   );
 };
+
+/**
+ * The first page of the screen body, consist of B, C, and D component.
+ *
+ * the first page component will take 90% of the height of the device's screen.
+ * (10% is the header)
+ */
 
 const FirstPageBody = () => {
   const size = useWindowSize();
@@ -74,6 +101,13 @@ const FirstPageBody = () => {
     </Box>
   );
 };
+
+/**
+ * The second page of the screen body, consist of E and F component.
+ *
+ * the second page component will take 70% of the height of the device's screen.
+ */
+
 const SecondPageBody = () => {
   const size = useWindowSize();
 
@@ -84,6 +118,11 @@ const SecondPageBody = () => {
   );
 };
 
+/**
+ * The footer of the screen body, will take remaining 30% of
+ * the height of the device's screen (70% is taken for second page).
+ */
+
 const Footer = () => {
   const size = useWindowSize();
 
@@ -93,5 +132,9 @@ const Footer = () => {
     </Box>
   );
 };
+
+/* =============================================================================
+Export
+============================================================================= */
 
 export default SmallScreenApp;
